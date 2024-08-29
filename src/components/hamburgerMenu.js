@@ -8,15 +8,40 @@ import MenuItem from "./elements/menu/menuItem";
 import GenericButton from "./elements/genericButton";
 
 import { useState,useEffect } from "react";
+import { useNavigate,useLocation } from "react-router-dom";
 
 const HamburgerMenu = (props) =>{
     const {activeIndex,setActiveIndex}=props
     const [isOpen,setIsOpen]=useState(false)
     const [animationClass,setAnimationClass]=useState("slide-in-right")
+    const location = useLocation()
+    const navigate = useNavigate()
 
-    const toggleMenu = () => {
+    const checkPath = (item) =>{
+        const {to,action} = item
+        if(action === "external"){
+            window.open(to,"_blank")
+            return
+        }
+        if(location.pathname !== "/"){
+            navigate("/")
+            setTimeout(()=>{
+                const element = document.querySelector(to);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+            },500)
+        }else{
+            const element = document.querySelector(to);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }
+    const toggleMenu = (item) => {
         if(isOpen){
             setAnimationClass("slide-out-right")
+            checkPath(item)
             setTimeout(()=>{
                 setIsOpen(false)
             },500)
@@ -24,6 +49,7 @@ const HamburgerMenu = (props) =>{
             setIsOpen(true)
             setAnimationClass("slide-in-right")
         }
+        
     }
     useEffect(()=>{
         let isMobile = window.innerWidth < 1282
@@ -50,12 +76,13 @@ const HamburgerMenu = (props) =>{
                             React.Children.toArray(
                                 MenuList.map(i=>
                                     <MenuItem
-                                    onClick={toggleMenu}
+                                    onClick={()=>toggleMenu(i)}
                                     setActiveIndex={()=>setActiveIndex(i.id)}
                                     active={activeIndex === i.id ? true : false} 
                                     to={i.to} 
                                     text={i.text}
                                     action={i.action}
+                                    
                                     />
                                 )
                             )

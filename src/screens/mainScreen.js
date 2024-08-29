@@ -9,6 +9,7 @@ import Project from "../components/ourproject";
 import Cryptids from "../components/cryptids";
 import PageTop from "../components/PageTop";
 import BodyBackground from "../assets/img/bodybackground.png";
+import Partners from "../components/partners";
 
 const MainScreen = () => {
     return(
@@ -19,6 +20,7 @@ const MainScreen = () => {
             <RoadMap/>
             <Blog/>
             <Faq/>
+            <Partners/>
             <SocialConnections/>
             <Newsletter/>
         </MainPage>

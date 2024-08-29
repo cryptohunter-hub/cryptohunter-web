@@ -6,78 +6,126 @@ import AppstroreLogo from "../../assets/img/appstorelogo.png";
 import PlaystoreLogo from "../../assets/img/playstorelogo.png";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { useContext } from "react";
-import MenuContext from "../context/MenuContext";
+import MenuContext from "../../context/MenuContext";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const Footer = () => {
-    const {setActiveIndex}=useContext(MenuContext)
+    const { setActiveIndex } = useContext(MenuContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const checkPath = (item) => {
+        const {action,to,id}=item
 
-    return(
+        setActiveIndex(id)
+        
+        if (location.pathname !== "/") {
+            if(action === "external") {
+                window.open(to,"_blank")
+                return
+            }
+            navigate("/")
+            setTimeout(() => {
+                const element = document.querySelector(to);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 500)
+        }
+    }
+
+    return (
         <FooterContainer>
             <FooterTop>
                 <Section>
                     <SectionTitle>CRYPTO HUNTER</SectionTitle>
-                    <FlexContainer>
-                    <MenuContainer>
-                        {React.Children.toArray(
-                            MenuList.slice(0,3).map(i=>{
-                                if(i.action ==="inpage"){
-                                    return(
-                                    <StyledAnchorLink href={i.to} onClick={()=>setActiveIndex(i.id)} target={i.action === "external" ? "_blank" : "_self"}>
-                                        <MenuItem>{i.text}</MenuItem>
-                                    </StyledAnchorLink>
-                                    )
-                                }
-                                return(
-                                    <StyledLink href={i.to} onClick={()=>setActiveIndex(i.id)} target={i.action === "external" ? "_blank" : "_self"}>
-                                        <MenuItem>{i.text}</MenuItem>
-                                    </StyledLink>
-                                    )
-                            }                                
-                            )
-                        )}
-                    </MenuContainer>
-                    <MenuContainer>
-                        {React.Children.toArray(
-                            MenuList.slice(3,MenuList.length).map(i=>
-                                {
-                                    if(i.action ==="inpage"){
-                                        return(
-                                        <StyledAnchorLink href={i.to} onClick={()=>setActiveIndex(i.id)} target={i.action === "external" ? "_blank" : "_self"}>
-                                            <MenuItem>{i.text}</MenuItem>
-                                        </StyledAnchorLink>
-                                        )
-                                    }
-                                    return(
-                                        <StyledLink href={i.to} onClick={()=>setActiveIndex(i.id)} target={i.action === "external" ? "_blank" : "_self"}>
+                    {location.pathname !== "/" ?
+                        <FlexContainer>
+                            <MenuContainer>
+                                {React.Children.toArray(
+                                React.Children.toArray(
+                                    MenuList.slice(0,3).map(i =>
+                                        <StyledLink onClick={() => checkPath(i)} target={i.action === "external" ? "_blank" : "_self"}>
                                             <MenuItem>{i.text}</MenuItem>
                                         </StyledLink>
+                                    )
+                                )
+                                )}
+                            </MenuContainer>
+                            <MenuContainer>
+                                {React.Children.toArray(
+                                    MenuList.slice(3, MenuList.length).map(i =>
+                                        <StyledLink onClick={() => checkPath(i)} target={i.action === "external" ? "_blank" : "_self"}>
+                                            <MenuItem>{i.text}</MenuItem>
+                                        </StyledLink>
+                                    )
+                                )}
+                            </MenuContainer>
+                        </FlexContainer>
+
+                        :
+                        <FlexContainer>
+                            <MenuContainer>
+                                {React.Children.toArray(
+                                    MenuList.slice(0, 3).map(i => {
+                                        if (i.action === "inpage") {
+                                            return (
+                                                <StyledAnchorLink href={i.to} onClick={() => setActiveIndex(i.id)} target={i.action === "external" ? "_blank" : "_self"}>
+                                                    <MenuItem>{i.text}</MenuItem>
+                                                </StyledAnchorLink>
+                                            )
+                                        }
+                                        return (
+                                            <StyledLink href={i.to} onClick={() => setActiveIndex(i.id)} target={i.action === "external" ? "_blank" : "_self"}>
+                                                <MenuItem>{i.text}</MenuItem>
+                                            </StyledLink>
                                         )
-                                } 
-                                
-                            )
-                        )}
-                    </MenuContainer>
-                    </FlexContainer>
+                                    }
+                                    )
+                                )}
+                            </MenuContainer>
+                            <MenuContainer>
+                                {React.Children.toArray(
+                                    MenuList.slice(3, MenuList.length).map(i => {
+                                        if (i.action === "inpage") {
+                                            return (
+                                                <StyledAnchorLink href={i.to} onClick={() => setActiveIndex(i.id)} target={i.action === "external" ? "_blank" : "_self"}>
+                                                    <MenuItem>{i.text}</MenuItem>
+                                                </StyledAnchorLink>
+                                            )
+                                        }
+                                        return (
+                                            <StyledLink href={i.to} onClick={() => setActiveIndex(i.id)} target={i.action === "external" ? "_blank" : "_self"}>
+                                                <MenuItem>{i.text}</MenuItem>
+                                            </StyledLink>
+                                        )
+                                    }
+
+                                    )
+                                )}
+                            </MenuContainer>
+                        </FlexContainer>
+
+                    }
                 </Section>
                 <Section>
                     <SectionTitle>DOWNLOAD</SectionTitle>
                     <StoreContainer>
-                            <StyledLink style={{marginRight:"16px"}} href="#" >
-                                <StyledImage src={PlaystoreLogo} alt="Google Play Store"/>
-                            </StyledLink>
-                            <StyledLink href="#" >
-                                <StyledImage src={AppstroreLogo} alt="Google Play Store"/>
-                            </StyledLink>
+                        <StyledLink style={{ marginRight: "16px" }} href="#" >
+                            <StyledImage src={PlaystoreLogo} alt="Google Play Store" />
+                        </StyledLink>
+                        <StyledLink href="#" >
+                            <StyledImage src={AppstroreLogo} alt="Google Play Store" />
+                        </StyledLink>
                     </StoreContainer>
                 </Section>
                 <Section>
                     <SectionTitle>CONTACT</SectionTitle>
                     <ContactContainer>
                         <StyledLink href="mailto:contact@cryptohunter.world">
-                          <StyledMailIcon src={MailIcon} alt="email"/>                       
-                          <ContactText>contact@cryptohunter.world</ContactText>  
-                        </StyledLink>                     
+                            <StyledMailIcon src={MailIcon} alt="email" />
+                            <ContactText>contact@cryptohunter.world</ContactText>
+                        </StyledLink>
                     </ContactContainer>
 
                 </Section>
@@ -86,9 +134,9 @@ const Footer = () => {
                     <FollowText>Get the latest updates, trends, and insights. Subscribe now!</FollowText>
                     <SocialContainer>
                         {React.Children.toArray(
-                            SocialLinks.map(i=>
+                            SocialLinks.map(i =>
                                 <StyledLink href={i.link} target="_blank">
-                                    <SocialIcon src={i.icon2} alt={i.alt}/>
+                                    <SocialIcon src={i.icon2} alt={i.alt} />
                                 </StyledLink>
                             )
                         )}

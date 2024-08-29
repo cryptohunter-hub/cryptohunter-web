@@ -4,7 +4,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 
 
 const MenuItem = (props) =>{
-    const {text,action,to,active,setActiveIndex,onClick
+    const {text,action,to,active,setActiveIndex,onClick,location
     }=props
 
     const clickAction = () =>{
@@ -13,6 +13,21 @@ const MenuItem = (props) =>{
         }
         setActiveIndex()
     }
+
+ if(location?.pathname !== "/"){
+    return(
+        <MenuLink onClick={clickAction} target={action === "external" ? "_blank" : "_self"}>
+        <MenuItemContainer active={active}>           
+                    <MenuText>
+                        {text}
+                    </MenuText> 
+                    {active && 
+                 <MenuBottomLine/>
+                 }         
+        </MenuItemContainer>
+        </MenuLink>
+     )
+ }
  if(action === "inpage"){
     return(
         <StyledAnchoreLink onClick={clickAction} href={to}>

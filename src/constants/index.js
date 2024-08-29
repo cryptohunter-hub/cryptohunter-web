@@ -46,6 +46,24 @@ import Ground from "../assets/types/ground.png";
 import Dark from "../assets/types/dark.png";
 import Poison from "../assets/types/poison.png";
 import Psychic from "../assets/types/esper.png";
+ // Parnets
+import IostImage from "../assets/partners/iost.png";
+import AnimocaImage from "../assets/partners/animocaventures.png";
+import BbcImage from "../assets/partners/bbc.png";
+import CoinmarketImage from "../assets/partners/coinmarketcap.svg";
+import CryptokidImage from "../assets/partners/cryptokid.png";
+import HgventuresImage from "../assets/partners/hgventures.png";
+import OkxImage from "../assets/partners/okx.svg";
+import SlowmistImage from "../assets/partners/slowmist.png";
+import SpartanImage from "../assets/partners/spartangroup.png";
+import LayerOtcImage from "../assets/partners/layerotc.png";
+import NoxImage from "../assets/partners/nox.png";
+import Web3WavesImage from "../assets/partners/web3waves.png";
+import MindfullnessImage from "../assets/partners/mindfullness.png";
+import GalxeImage from "../assets/partners/galxe.png";
+import SteemImage from "../assets/partners/steem.png";
+
+
 
 const MenuList = [
   {
@@ -74,12 +92,18 @@ const MenuList = [
   },
   {
     id: 4,
+    text: "Partners",
+    action: "inpage",
+    to: "#partners",
+  },
+  {
+    id: 5,
     text: "Blog",
     action: "inpage",
     to: "#blog",
   },
   {
-    id: 5,
+    id: 6,
     text: "White Paper",
     action: "external",
     to: "https://docs.cryptohunter.world/",
@@ -87,11 +111,11 @@ const MenuList = [
 ];
 
 const SocialLinks = [
-  { icon: TelegramIcon, icon2: TelegramIcon2, link: "https://t.me/Cryptohunter_ANNOUNCEMENT ", alt: "Telegram" },
-  { icon: TelegramIcon, icon2: TelegramIcon2, link: "https://t.me/Cryptohunter_OFFFICIAL_COMMUNITY", alt: "Telegram" },
-  { icon: TwitterIcon, icon2: TwitterIcon2, link: "https://x.com/CryptohunterX2E", alt: "Twitter" },
-  { icon: MediumIcon, icon2: MediumIcon2, link: "https://medium.com/@cryptohunterworld", alt: "Medium" },
-  { icon: YoutubeIcon, icon2: YoutubeIcon2, link: "https://www.youtube.com/@cryptohunterworld", alt: "Youtube" },
+  { icon: TelegramIcon, icon2: TelegramIcon2, link: "https://t.me/Cryptohunter_ANNOUNCEMENT ", alt: "Telegram Announcement" },
+  { icon: TelegramIcon, icon2: TelegramIcon2, link: "https://t.me/Cryptohunter_OFFFICIAL_COMMUNITY", alt: "Telegram Official" },
+  { icon: TwitterIcon, icon2: TwitterIcon2, link: "https://x.com/CryptohunterX2E", alt: "Twitter Feed" },
+  { icon: MediumIcon, icon2: MediumIcon2, link: "https://medium.com/@cryptohunterworld", alt: "Medium Feed" },
+  { icon: YoutubeIcon, icon2: YoutubeIcon2, link: "https://www.youtube.com/@cryptohunterworld", alt: "Youtube Channel" },
 ];
 const FAQData = [
   {
@@ -301,4 +325,97 @@ const RoadmapData = [
   },
   
 ]
-export { MenuList, SocialLinks, FAQData, BlogData, CryptidsData ,RoadmapData};
+const PartnersData = [
+  {
+    name:"IOST",
+    image:IostImage,
+    uri:"https://iost.io/",
+    type:"partner" // partner || bakers
+  },
+  {
+    name:"Big Candle Capital",
+    image:BbcImage,
+    uri:"https://bigcandle.capital/",
+    type:"partner" // partner || bakers
+  },
+  {
+    name:"HG Ventures",
+    image:HgventuresImage,
+    uri:"https://www.hgventures.io/",
+    type:"partner" // partner || bakers
+  },
+  {
+    name:"Mindfullness Capital",
+    image:MindfullnessImage,
+    uri:"https://www.mindfulnesscap.com/",
+    type:"partner" // partner || bakers
+  },
+  {
+    name:"CoinMarketCap",
+    image:CoinmarketImage,
+    uri:"https://coinmarketcap.com/currencies/cryptohunter-world/",
+    type:"partner" // partner || bakers
+  },
+  // {
+  //   name:"Spartan Group",
+  //   image:SpartanImage,
+  //   uri:"https://www.spartangroup.io/",
+  //   type:"partner" // partner || bakers
+  // },
+  {
+    name:"Slowmist",
+    image:SlowmistImage,
+    uri:"https://www.slowmist.com/",
+    type:"partner" // partner || bakers
+  },
+  // {
+  //   name:"Okx",
+  //   image:OkxImage,
+  //   uri:"https://www.okx.com",
+  //   type:"partner" // partner || bakers
+  // },
+  {
+    name:"Layer OTC",
+    image:LayerOtcImage,
+    uri:"https://www.layer-otc.com/",
+    type:"partner" // partner || bakers
+  },
+  // {
+  //   name:"Crypto Kid",
+  //   image:CryptokidImage,
+  //   uri:"https://cryptokid.com/",
+  //   type:"partner" // partner || bakers
+  // },
+  // {
+  //   name:"Animaco Ventures",
+  //   image:AnimocaImage,
+  //   uri:"https://animoca.ventures/",
+  //   type:"partner" // partner || bakers
+  // },
+  {
+    name:"Nox Gaming Gear",
+    image:NoxImage,
+    uri:"https://e-nox.co.kr/",
+    type:"partner" // partner || bakers
+  },
+  {
+    name:"Web3 Waves",
+    image:Web3WavesImage,
+    uri:"#",
+    type:"partner" // partner || bakers
+  },
+  {
+    name:"Galxe",
+    image:GalxeImage,
+    uri:"https://www.galxe.com/",
+    type:"partner" // partner || bakers
+  },
+  {
+    name:"Steem Witness",
+    image:SteemImage,
+    uri:"#",
+    type:"partner" // partner || bakers
+  }
+
+]
+export { MenuList, SocialLinks, FAQData, BlogData, CryptidsData ,RoadmapData,PartnersData};

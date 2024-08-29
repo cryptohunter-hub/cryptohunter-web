@@ -5,11 +5,25 @@ import {useContext } from "react";
 import GenericButton from "./elements/genericButton";
 import HamburgerMenu from "./hamburgerMenu";
 import { MenuList } from "../constants";
-import MenuContext from "./context/MenuContext";
+import MenuContext from "../context/MenuContext";
+import { useLocation,useNavigate} from "react-router-dom";
 
 
 const Navbar = () => {
     const {activeIndex,setActiveIndex}=useContext(MenuContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const checkPath = (to) =>{
+        if(location.pathname !== "/"){
+            navigate("/")
+            setTimeout(()=>{
+                const element = document.querySelector(to);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+            },500)
+        }
+    }
 
     return(
         <NavbarContainer>
@@ -23,6 +37,8 @@ const Navbar = () => {
                         to={i.to} 
                         text={i.text}
                         action={i.action}
+                        onClick={()=>checkPath(i.to)}
+                        location={location}
                         />
                     )
                 )

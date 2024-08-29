@@ -13,6 +13,9 @@ const SocialConnections = () => {
                 <StyledLink href={i.link}>
                     <SocialItemCard>
                         <SocialIcon alt={i.alt} src={i.icon} />
+                        <AccountName>
+                            {i.alt}
+                        </AccountName>
                     </SocialItemCard>
                 </StyledLink>
                 )
@@ -41,8 +44,18 @@ const Title = styled.h2`
 `
 const LinkContainer = styled.div`
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    /* justify-content: center; */
+    grid-template-columns: auto auto auto auto auto;
+    gap: 16px;
+    @media (max-width:992px) {
+        grid-template-columns: auto auto;
+        gap: 4px;
+    }
+    @media (max-width:640px) {
+        grid-template-columns: auto;
+        gap: 4px;
+    }
 `
 const SocialItemCard = styled.div`
     width: 100%;
@@ -52,9 +65,10 @@ const SocialItemCard = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     cursor: pointer;
     @media (max-width:992px) {
-        height: 78px;
+        height: 120px;
         border-radius: 18px;
     }
 `
@@ -68,11 +82,28 @@ const SocialIcon = styled.img`
 `
 const StyledLink = styled.a`
     text-decoration: none;
-    width: calc(25% - 16px);
+    /* width: calc(25% - 16px);
+    margin: 4px;
     @media (max-width:992px) {
         width: calc(25% - 8px);
-    }
+    } */
 
+`
+const AccountName = styled.span`
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 24px;
+    white-space: break-spaces;
+    @media (max-width:992px) {
+        font-size:10px;
+        margin-top: 8px;
+    }
 `
 
 export default SocialConnections

@@ -1,19 +1,28 @@
 import './App.css';
 import Header from './components/partials/header';
 import Footer from './components/partials/footer';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import { MenuProvider } from './components/context/MenuContext';
+import { MenuProvider } from './context/MenuContext';
 import MainScreen from './screens/mainScreen';
+// import EventScreen from './screens/eventScreen';
 
 function App() {
   return (
     <MenuProvider>
-          <Page>
-        <Header/>
-        <MainScreen/>
-        <Footer/>
-    </Page>
-    </MenuProvider>
+      <Page>
+       
+          <Router>
+          <Header/>
+            <Routes>
+                <Route path="/" element={<MainScreen />} />
+                {/* <Route path='/event' element={<EventScreen/>} /> */}
+            </Routes>
+            <Footer/>
+          </Router>
+        
+      </Page>
+</MenuProvider>
 
   );
 }
