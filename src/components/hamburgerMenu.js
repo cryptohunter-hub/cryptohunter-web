@@ -87,7 +87,7 @@ const HamburgerMenu = (props) =>{
                                 )
                             )
                         }
-                   <GenericButton style={{width:"322px",displa:"flex",alignItems:"center",justifyContent:"center"}} text="Download" clickAction={()=>alert("will be ready soon")}/>
+                   <GenericButton style={{width:"322px",display:"flex",alignItems:"center",justifyContent:"center",minHeight:"55px"}} text="Download" clickAction={()=>alert("will be ready soon")}/>
                     </MenuBody>
                 </MenuContainer>           
         </HamburgerMenuContainer>
@@ -131,6 +131,8 @@ const MenuHeader = styled.div`
 const MenuBody = styled.div`
     width: 100%;
     height: 100%;
+    max-height: 70%;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
